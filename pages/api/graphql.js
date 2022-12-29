@@ -12,7 +12,7 @@ export const config = {
 export default createYoga({
   graphqlEndpoint: "/api/graphql",
   schema: async () => {
-    const schema = await loadSchema("./pages/api/schema.graphql", {
+    const schema = await loadSchema("./public/schema.graphql", {
       loaders: [new GraphQLFileLoader()],
     });
     const resolvers = {
