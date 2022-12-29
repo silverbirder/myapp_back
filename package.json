@@ -1,0 +1,20 @@
+{
+  "name": "myapp_back",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@next/font": "13.1.1",
+    "graphql": "^16.6.0",
+    "graphql-tools": "^8.3.14",
+    "graphql-yoga": "^3.1.2",
+    "next": "13.1.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
