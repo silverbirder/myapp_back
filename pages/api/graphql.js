@@ -1,14 +1,25 @@
-import { loadFiles } from "@graphql-tools/load-files";
+import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
+import { addResolversToSchema } from "@graphql-tools/schema";
+import { loadSchema } from "@graphql-tools/load";
 import { createYoga } from "graphql-yoga";
 
 export const config = {
   api: {
-    // Disable body parsing (required for file uploads)
     bodyParser: false,
   },
 };
 
 export default createYoga({
-  // Needed to be defined explicitly because our endpoint lives at a different path other than `/graphql`
   graphqlEndpoint: "/api/graphql",
+  schema: async () => {
+    const schema = await loadSchema("./pages/api/schema.graphql", {
+      loaders: [new GraphQLFileLoader()],
+    });
+    const resolvers = {
+      Query: {
+        fruits: () => [{ name: "Apple" }, { name: "Banana" }],
+      },
+    };
+    return addResolversToSchema({ schema, resolvers });
+  },
 });
